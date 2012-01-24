@@ -29,7 +29,7 @@
     <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
         <property name="mappings">
             <value>
-            /**/greet.rpc=quoteController
+            /**/greet.rpc=greetingService
             </value>
         </property>
     </bean>
@@ -37,7 +37,7 @@
     <!-- GwtRpcController wraps our service in order to decode the incoming -->
     <!-- request then delegates processing of the call to the POJO service -->
     <!-- and then encodes the return value forwarding the response. -->
-    <bean id="quoteController" class="net.marioosh.gwt.server.GwtRpcController">
+    <bean id="greetingService" class="net.marioosh.gwt.server.GwtRpcController">
         <property name="remoteService">
             <bean class="net.marioosh.gwt.server.GreetingServiceImpl" />
         </property>
