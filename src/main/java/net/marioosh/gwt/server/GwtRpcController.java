@@ -15,14 +15,13 @@ import com.google.gwt.user.server.rpc.RPC;
 import com.google.gwt.user.server.rpc.RPCRequest;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
+@SuppressWarnings("serial")
 public class GwtRpcController extends RemoteServiceServlet implements
         Controller, ServletContextAware {
 
     private ServletContext servletContext;
 
     private RemoteService remoteService;
-
-    private Class remoteServiceClass;
 
     public ModelAndView handleRequest(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
@@ -35,7 +34,7 @@ public class GwtRpcController extends RemoteServiceServlet implements
         try {
 
             RPCRequest rpcRequest = RPC.decodeRequest(payload,
-                    this.remoteServiceClass, this);
+            		remoteService.getClass(), this);
             
             onAfterRequestDeserialized(rpcRequest);
 
@@ -63,7 +62,6 @@ public class GwtRpcController extends RemoteServiceServlet implements
 
     public void setRemoteService(RemoteService remoteService) {
         this.remoteService = remoteService;
-        this.remoteServiceClass = this.remoteService.getClass();
     }
 
 }
